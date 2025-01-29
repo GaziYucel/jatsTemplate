@@ -26,6 +26,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\Attributes\CoversClass;
 use APP\plugins\generic\jatsTemplate\classes\Article;
 use APP\plugins\generic\jatsTemplate\classes\ArticleFront;
+use PKP\affiliation\Affiliation;
 
 #[CoversClass(ArticleFront::class)]
 class ArticleFrontTest extends \PKP\tests\PKPTestCase
@@ -68,7 +69,9 @@ class ArticleFrontTest extends \PKP\tests\PKPTestCase
         $author = new Author();
         $author->setGivenName('author-firstname', 'en');
         $author->setFamilyName('author-lastname', 'en');
-        $author->setAffiliation('author-affiliation', 'en');
+        $affiliation = new Affiliation();
+        $affiliation->setName('author-affiliation', 'en');
+        $author->setAffiliations([$affiliation]);
         $author->setEmail('someone@example.com');
 
         // Publication

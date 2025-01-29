@@ -28,6 +28,7 @@ use PKP\galley\Collector as GalleyCollector;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PKP\author\Repository as AuthorRepository;
 use APP\plugins\generic\jatsTemplate\classes\Article;
+use PKP\affiliation\Affiliation;
 
 #[CoversClass(Article::class)]
 class ArticleTest extends PKPTestCase
@@ -72,7 +73,9 @@ class ArticleTest extends PKPTestCase
         $author = new Author();
         $author->setGivenName('author-firstname', 'en');
         $author->setFamilyName('author-lastname', 'en');
-        $author->setAffiliation('author-affiliation', 'en');
+        $affiliation = new Affiliation();
+        $affiliation->setName('author-affiliation', 'en');
+        $author->setAffiliations([$affiliation]);
         $author->setEmail('someone@example.com');
 
         // Publication
